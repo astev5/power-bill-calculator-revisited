@@ -31,10 +31,6 @@ public class MyUtility {
      */
     public MyUtility(double prev, double curr) {
         setUsage(prev, curr);
-        setRate(prev, curr);
-        setSubtotal(usage, rate);
-        setTaxes(RATE_TAX, subtotal);
-        setTotal(taxes, subtotal);
     }
 
     /**
@@ -52,7 +48,8 @@ public class MyUtility {
      */
     private void setUsage(double p, double c) {
         usage = (c - p);
-    }
+        setRate(usage);
+    } //End setUsage method
 
     /**
      * Method @getUsage: Method to get usage
@@ -61,7 +58,7 @@ public class MyUtility {
      */
     public double getUsage() {
         return usage;
-    }
+    } //End getUsage method
 
     /**
      * Method @setRate: Method to determine rate based on usage
@@ -69,7 +66,7 @@ public class MyUtility {
      * @param p
      * @param c
      */
-    private void setRate(double p, double c) {
+    private void setRate(double usage) {
         if (usage <= 500) {
             rate = RATE_A;
         } else if (usage >= 501 && usage <= 900) {
@@ -77,7 +74,8 @@ public class MyUtility {
         } else {
             rate = RATE_C;
         }
-    }
+        setSubtotal(usage, rate);
+    } //End setRate method
 
     /**
      * Method @getRate: Method to get rate determined by usage
@@ -86,7 +84,7 @@ public class MyUtility {
      */
     public double getRate() {
         return rate;
-    }
+    } //End getRate method
 
     /**
      * Method @setSubtotal: Method to calculate subtotal
@@ -96,7 +94,8 @@ public class MyUtility {
      */
     private void setSubtotal(double usage, double rate) {
         subtotal = usage * rate;
-    }
+        setTaxes(RATE_TAX, subtotal);
+    } //End setSubtotal method
 
     /**
      * Method @getSubtotal: Method to get calculated subtotal
@@ -105,7 +104,7 @@ public class MyUtility {
      */
     public double getSubtotal() {
         return subtotal;
-    }
+    } //End getSubtotal method
 
     /**
      * Method @setTaxes: Method to calculate taxes based on subtotal
@@ -115,7 +114,8 @@ public class MyUtility {
      */
     private void setTaxes(double RATE_TAX, double subtotal) {
         taxes = RATE_TAX * subtotal;
-    }
+        setTotal(taxes, subtotal);
+    } //End setTaxes method
 
     /**
      * Method getTaxes: Method to get taxes based on subtotal
@@ -124,7 +124,7 @@ public class MyUtility {
      */
     public double getTaxes() {
         return taxes;
-    }
+    } //End getTaxes method
 
     /**
      * Method @setTotal: Method to calculate total bill
@@ -134,7 +134,7 @@ public class MyUtility {
      */
     private void setTotal(double taxes, double subtotal) {
         total = taxes + subtotal;
-    }
+    } //End setTotal method
 
     /**
      * Method @getTotal: Method to get total bill
@@ -143,6 +143,5 @@ public class MyUtility {
      */
     public double getTotal() {
         return total;
-    }
-
+    } //End getTotal method
 }
